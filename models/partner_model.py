@@ -9,7 +9,12 @@ class PartnerTypeEnum(str, enum.Enum):
 class Partner(Base):
     __tablename__ = "partners"
     partner_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    number_of_users = Column(Integer, nullable=True)
+    rider_id = Column(Integer, nullable=True)  # Should be ForeignKey if Rider table exists
+    partners_role = Column(String(100), nullable=True)  # ENUM not specified, using String
     user_id = Column(Integer, ForeignKey("users.user_id"))
     partner_type = Column(Enum(PartnerTypeEnum), nullable=False)
     company_name = Column(String(255))
     company_size = Column(Integer)
+    aadhare_card_number = Column(String(50), nullable=True)
+    pan_card = Column(String(50), nullable=True)

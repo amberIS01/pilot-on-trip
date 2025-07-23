@@ -33,3 +33,23 @@ def get_location(location_id: int, db: Session = Depends(get_db)):
     if not location:
         raise HTTPException(status_code=404, detail="Location not found")
     return location
+
+@router.put("/locations/{location_id}", response_model=LocationCreate)
+def update_location(location_id: int, location: LocationCreate, db: Session = Depends(get_db)):
+    db_location = db.query(Location).filter(Location.location_id == location_id).first()
+    if not db_location:
+        raise HTTPException(status_code=404, detail="Location not found")
+    for key, value in location.dict().items():
+        setattr(db_location, key, value)
+    db.commit()
+    db.refresh(db_location)
+    return db_location
+
+@router.delete("/locations/{location_id}")
+def delete_location(location_id: int, db: Session = Depends(get_db)):
+    db_location = db.query(Location).filter(Location.location_id == location_id).first()
+    if not db_location:
+        raise HTTPException(status_code=404, detail="Location not found")
+    db.delete(db_location)
+    db.commit()
+    return {"detail": "Location deleted"}

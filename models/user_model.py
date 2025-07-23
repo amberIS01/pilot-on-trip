@@ -15,6 +15,7 @@ class User(Base):
     email = Column(String(100), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
     user_type = Column(Enum(UserTypeEnum), nullable=False)
+    preferred_language = Column(String(50), nullable=True)
     location_id = Column(Integer, ForeignKey("locations.location_id"), nullable=True)
     profile_photo = Column(String(255), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)

@@ -7,3 +7,9 @@ class VehicleCreate(BaseModel):
     vehicle_description: str
     vehicle_type: Literal["cab", "bike", "auto"]
     vehicle_cab_type: Literal["sedan", "hatchback", "suv", "van", "luxury"]
+
+class VehicleResponse(VehicleCreate):
+    vehicle_id: int
+
+    class Config:
+        from_attributes = True

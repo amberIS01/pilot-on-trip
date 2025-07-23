@@ -36,3 +36,23 @@ def get_vehicle(vehicle_id: int, db: Session = Depends(get_db)):
     if not vehicle:
         raise HTTPException(status_code=404, detail="Vehicle not found")
     return vehicle
+
+@router.put("/vehicles/{vehicle_id}", response_model=VehicleCreate)
+def update_vehicle(vehicle_id: int, vehicle: VehicleCreate, db: Session = Depends(get_db)):
+    db_vehicle = db.query(Vehicle).filter(Vehicle.vehicle_id == vehicle_id).first()
+    if not db_vehicle:
+        raise HTTPException(status_code=404, detail="Vehicle not found")
+    for key, value in vehicle.dict().items():
+        setattr(db_vehicle, key, value)
+    db.commit()
+    db.refresh(db_vehicle)
+    return db_vehicle
+
+@router.delete("/vehicles/{vehicle_id}")
+def delete_vehicle(vehicle_id: int, db: Session = Depends(get_db)):
+    db_vehicle = db.query(Vehicle).filter(Vehicle.vehicle_id == vehicle_id).first()
+    if not db_vehicle:
+        raise HTTPException(status_code=404, detail="Vehicle not found")
+    db.delete(db_vehicle)
+    db.commit()
+    return {"detail": "Vehicle deleted"}

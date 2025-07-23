@@ -15,3 +15,6 @@ class UserCreate(BaseModel):
 class UserResponse(UserCreate):
     user_id: int
     created_at: datetime
+
+    class Config:
+        from_attributes = True

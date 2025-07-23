@@ -5,3 +5,9 @@ class LocationCreate(BaseModel):
     state: str
     country: str
     pincode: str
+
+class LocationResponse(LocationCreate):
+    location_id: int
+
+    class Config:
+        from_attributes = True
