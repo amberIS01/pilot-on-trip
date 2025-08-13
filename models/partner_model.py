@@ -18,3 +18,4 @@ class Partner(Base):
     company_size = Column(Integer)
     aadhare_card_number = Column(String(50), nullable=True)
     pan_card = Column(String(50), nullable=True)
+    partner_rating = Column(Integer, default=0)  # Feedback rating (0-4)

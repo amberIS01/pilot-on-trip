@@ -6,6 +6,7 @@ class VehicleTypeEnum(str, enum.Enum):
     cab = "cab"
     bike = "bike"
     auto = "auto"
+    buses = "buses"
 
 class VehicleCabTypeEnum(str, enum.Enum):
     sedan = "sedan"

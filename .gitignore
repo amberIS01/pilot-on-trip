@@ -63,3 +63,7 @@ coverage.xml
 
 # Windows
 Thumbs.db
+
+# Development files
+to-do.md
+*.todo

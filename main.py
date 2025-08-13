@@ -17,4 +17,3 @@ app.include_router(customer_support.router)
 app.include_router(rider.router)
 app.include_router(booking.router)
 app.include_router(payment.router)
-

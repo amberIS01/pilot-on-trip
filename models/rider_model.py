@@ -11,4 +11,6 @@ class Rider(Base):
     rider_state = Column(String(50), nullable=True)
     rider_age = Column(Integer, nullable=True)
     pan_card = Column(String(50), nullable=True)
+    aadhare_card_number = Column(String(50), nullable=True)
     rider_language = Column(String(50), nullable=True)
+    partner_rating = Column(Integer, default=0)  # Feedback rating (0-4)
