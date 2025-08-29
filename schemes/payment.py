@@ -1,15 +1,15 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Literal
 
 class PaymentCreate(BaseModel):
     booking_id: str
-    upi_id: Optional[str] = None
+    mode_of_payment: Literal["upi", "netbanking", "cash", "card"]
     payment_maker: str
     user_id: int
 
 class PaymentResponse(PaymentCreate):
     payment_id: int
-    reference_no: str
+    reference_no: str  # UUID auto-generated
 
     class Config:
         from_attributes = True
