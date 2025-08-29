@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import user, location, vehicle, partner, service, dashboard, partner_query, customer_support, rider, booking, payment
+from routers import user, location, vehicle, partner, service, dashboard, partner_query, customer_support, rider, booking, payment, user_profile, chatbot
 
 app = FastAPI()
 @app.get("/")
@@ -17,3 +17,5 @@ app.include_router(customer_support.router)
 app.include_router(rider.router)
 app.include_router(booking.router)
 app.include_router(payment.router)
+app.include_router(user_profile.router)
+app.include_router(chatbot.router)
