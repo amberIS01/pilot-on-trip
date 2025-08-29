@@ -1,0 +1,2564 @@
+{
+  "info": {
+    "name": "PilotsOntip Complete API Collection",
+    "description": "Complete API collection for PilotsOntip Backend with all 90+ endpoints including AI Assistant, all CRUD operations, and dashboard management. Import this into Postman to test all APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "2.0.0"
+  },
+  "item": [
+    {
+      "name": "AI Assistant / Chatbot",
+      "item": [
+        {
+          "name": "Start New Chat - Booking Query",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"Hi, I want to book a cab\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/chat/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                ""
+              ]
+            },
+            "description": "Start a new conversation with the AI assistant for booking"
+          }
+        },
+        {
+          "name": "Continue Chat - Provide Name",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"My name is John\",\n    \"case_id\": \"CASE000001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/chat/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                ""
+              ]
+            },
+            "description": "Continue existing conversation by providing case_id"
+          }
+        },
+        {
+          "name": "Continue Chat - Provide Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"My phone is 9876543210\",\n    \"case_id\": \"CASE000001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/chat/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                ""
+              ]
+            },
+            "description": "Continue conversation providing phone number"
+          }
+        },
+        {
+          "name": "Support Query",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"I have a problem with my last booking\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/chat/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                ""
+              ]
+            },
+            "description": "Start a support conversation"
+          }
+        },
+        {
+          "name": "Pricing Query",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"What are your rates?\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/chat/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                ""
+              ]
+            },
+            "description": "Ask about pricing"
+          }
+        },
+        {
+          "name": "Existing User Chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"Hi, I need help\",\n    \"email\": \"john@example.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/chat/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                ""
+              ]
+            },
+            "description": "Start chat as existing user with email"
+          }
+        },
+        {
+          "name": "Get Chat History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/chat/{{case_id}}/history",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                "{{case_id}}",
+                "history"
+              ]
+            },
+            "description": "Get complete conversation history for a case"
+          }
+        },
+        {
+          "name": "Close Conversation",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/chat/{{case_id}}/close",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "chat",
+                "{{case_id}}",
+                "close"
+              ]
+            },
+            "description": "Mark a conversation as resolved"
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Profiles (AI Cases)",
+      "item": [
+        {
+          "name": "Create User Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"phone\": \"9876543210\",\n    \"user_type\": \"new\",\n    \"query_type\": \"booking\",\n    \"last_message\": \"I want to book a ride\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/user_profiles/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "user_profiles",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Profiles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/user_profiles/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "user_profiles",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Profile by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/user_profiles/{{case_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "user_profiles",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Active Cases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/user_profiles/active-cases/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "user_profiles",
+                "active-cases",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"conversation_status\": \"resolved\",\n    \"conversation_summary\": \"User booked a cab successfully\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/user_profiles/{{case_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "user_profiles",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Profile",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/user_profiles/{{case_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "user_profiles",
+                "{{case_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"phone\": \"9876543210\",\n    \"password\": \"password123\",\n    \"user_type\": \"customer\",\n    \"preferred_language\": \"English\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/users/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "users",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/users/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "users",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/users/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "users",
+                "{{user_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Updated\",\n    \"email\": \"john.updated@example.com\",\n    \"phone\": \"9876543211\",\n    \"user_type\": \"customer\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/users/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "users",
+                "{{user_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/users/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "users",
+                "{{user_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_id\": \"{{$guid}}\",\n    \"booking_details\": \"Airport pickup\",\n    \"vehicle_number\": \"MH12AB1234\",\n    \"vehicle_type\": \"cab\",\n    \"pickup_location\": \"Mumbai Airport\",\n    \"vehicle_variant_type\": \"petrol\",\n    \"drop_location\": \"Andheri East\",\n    \"booking_schedule\": \"2024-12-25T10:00:00\",\n    \"number_of_person\": 2,\n    \"booking_price\": 500.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/bookings/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "bookings",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/bookings/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "bookings",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Booking by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/bookings/{{booking_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "bookings",
+                "{{booking_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Booking",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_details\": \"Updated booking details\",\n    \"pickup_location\": \"New pickup location\",\n    \"drop_location\": \"New drop location\",\n    \"booking_price\": 600.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/bookings/{{booking_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "bookings",
+                "{{booking_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Booking",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/bookings/{{booking_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "bookings",
+                "{{booking_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Riders",
+      "item": [
+        {
+          "name": "Create Rider",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rider_name\": \"Mike Wilson\",\n    \"rider_phone\": \"9876543210\",\n    \"rider_email\": \"mike@example.com\",\n    \"rider_license\": \"DL123456789\",\n    \"rider_rating\": 4.5,\n    \"vehicle_id\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/rider/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Riders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/rider/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Rider by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/rider/{{rider_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider",
+                "{{rider_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Rider",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rider_name\": \"Mike Wilson Updated\",\n    \"rider_phone\": \"9876543211\",\n    \"rider_rating\": 4.8\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/rider/{{rider_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider",
+                "{{rider_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Rider",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/rider/{{rider_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider",
+                "{{rider_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"service_name\": \"Airport Transfer\",\n    \"service_description\": \"Premium airport pickup and drop service\",\n    \"service_price\": 1500.00,\n    \"service_duration\": 60,\n    \"service_availability\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/services/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "services",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/services/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "services",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Service by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/services/{{service_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "services",
+                "{{service_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"service_name\": \"Premium Airport Transfer\",\n    \"service_price\": 1800.00,\n    \"service_availability\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/services/{{service_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "services",
+                "{{service_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/services/{{service_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "services",
+                "{{service_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"vehicle_name\": \"Swift Dzire\",\n    \"vehicle_number\": \"MH12AB1234\",\n    \"vehicle_description\": \"White sedan, AC\",\n    \"vehicle_rc\": \"RC123456\",\n    \"vehicle_condition\": \"Excellent\",\n    \"variant\": \"petrol\",\n    \"vehicle_type\": \"cab\",\n    \"vehicle_cab_type\": \"sedan\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/vehicles/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "vehicles",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/vehicles/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "vehicles",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Vehicle by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/vehicles/{{vehicle_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Vehicle",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"vehicle_condition\": \"Good\",\n    \"vehicle_description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/vehicles/{{vehicle_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Vehicle",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/vehicles/{{vehicle_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Partners",
+      "item": [
+        {
+          "name": "Create Partner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"number_of_users\": 5,\n    \"partners_role\": \"Driver\",\n    \"partner_type\": \"individual\",\n    \"company_name\": \"Quick Cabs\",\n    \"company_size\": 10,\n    \"aadhare_card_number\": \"1234-5678-9012\",\n    \"pan_card\": \"ABCDE1234F\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/partners/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partners",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Partners",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/partners/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partners",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Partner by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/partners/{{partner_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partners",
+                "{{partner_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Partner",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"company_name\": \"Updated Quick Cabs\",\n    \"company_size\": 15\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/partners/{{partner_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partners",
+                "{{partner_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Partner",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/partners/{{partner_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partners",
+                "{{partner_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Partner Queries",
+      "item": [
+        {
+          "name": "Create Partner Query",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"partner_name\": \"ABC Transport\",\n    \"partner_email\": \"abc@transport.com\",\n    \"partner_phone\": \"9876543210\",\n    \"query_type\": \"general\",\n    \"query_message\": \"Need information about partnership opportunities\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/partner_query/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partner_query",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Partner Queries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/partner_query/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partner_query",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Partner Query by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/partner_query/{{query_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partner_query",
+                "{{query_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Partner Query",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"query_status\": \"resolved\",\n    \"resolution_notes\": \"Query has been addressed via email\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/partner_query/{{query_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partner_query",
+                "{{query_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Partner Query",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/partner_query/{{query_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "partner_query",
+                "{{query_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboards",
+      "item": [
+        {
+          "name": "Create Dashboard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"dashboard_name\": \"Main Dashboard\",\n    \"dashboard_type\": \"admin\",\n    \"total_bookings\": 100,\n    \"active_users\": 50,\n    \"revenue_today\": 10000.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/dashboards/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Dashboards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/dashboards/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboard by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/dashboards/{{dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                "{{dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Dashboard",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total_bookings\": 150,\n    \"active_users\": 75,\n    \"revenue_today\": 15000.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/dashboards/{{dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                "{{dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Dashboard",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/dashboards/{{dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                "{{dashboard_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "item": [
+        {
+          "name": "Create Admin Dashboard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total_users\": 1000,\n    \"total_bookings\": 500,\n    \"total_revenue\": 50000.00,\n    \"active_riders\": 25,\n    \"pending_approvals\": 10\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/admin_dashboard/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "admin_dashboard",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Admin Dashboards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/admin_dashboard/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "admin_dashboard",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Admin Dashboard by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/admin_dashboard/{{admin_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "admin_dashboard",
+                "{{admin_dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Admin Dashboard",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total_users\": 1100,\n    \"total_revenue\": 55000.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/admin_dashboard/{{admin_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "admin_dashboard",
+                "{{admin_dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Admin Dashboard",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/admin_dashboard/{{admin_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "admin_dashboard",
+                "{{admin_dashboard_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer Dashboard",
+      "item": [
+        {
+          "name": "Create Customer Dashboard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\": 1,\n    \"last_login\": \"2024-01-15T10:30:00\",\n    \"activity_summary\": \"User logged in and viewed 3 bookings\",\n    \"booking_id\": \"{{booking_id}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Customer Dashboards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/?skip=0&limit=100",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customer Dashboard by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/{{customer_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                "{{customer_dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboard by User ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/user/{{user_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                "user",
+                "{{user_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboards by Booking ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/booking/{{booking_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                "booking",
+                "{{booking_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Customer Dashboard",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"last_login\": \"2024-01-15T14:00:00\",\n    \"activity_summary\": \"User completed a booking and left feedback\",\n    \"booking_id\": \"{{booking_id}}\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/{{customer_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                "{{customer_dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Dashboard Activity",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"activity_summary\": \"User browsed services and initiated chat support\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/{{customer_dashboard_id}}/activity?activity_summary=User%20viewed%20payment%20history",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                "{{customer_dashboard_id}}",
+                "activity"
+              ],
+              "query": [
+                {
+                  "key": "activity_summary",
+                  "value": "User viewed payment history"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Customer Dashboard",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_dashboard/{{customer_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_dashboard",
+                "{{customer_dashboard_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rider Dashboard",
+      "item": [
+        {
+          "name": "Create Rider Dashboard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rider_id\": 1,\n    \"total_trips\": 100,\n    \"completed_trips\": 95,\n    \"cancelled_trips\": 5,\n    \"total_earnings\": 15000.00,\n    \"current_rating\": 4.7,\n    \"active_status\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/rider_dashboard/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider_dashboard",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Rider Dashboards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/rider_dashboard/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider_dashboard",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Rider Dashboard by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/rider_dashboard/{{rider_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider_dashboard",
+                "{{rider_dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Rider Dashboard",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total_trips\": 101,\n    \"completed_trips\": 96,\n    \"total_earnings\": 15300.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/rider_dashboard/{{rider_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider_dashboard",
+                "{{rider_dashboard_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Rider Dashboard",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/rider_dashboard/{{rider_dashboard_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "rider_dashboard",
+                "{{rider_dashboard_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create Payment - UPI",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_id\": \"{{booking_id}}\",\n    \"mode_of_payment\": \"upi\",\n    \"payment_maker\": \"John Doe\",\n    \"user_id\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/payments/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Payment - Cash",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_id\": \"{{booking_id}}\",\n    \"mode_of_payment\": \"cash\",\n    \"payment_maker\": \"Jane Smith\",\n    \"user_id\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/payments/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Payment - Card",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_id\": \"{{booking_id}}\",\n    \"mode_of_payment\": \"card\",\n    \"payment_maker\": \"Robert Johnson\",\n    \"user_id\": 3\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/payments/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Payments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/payments/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Payment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/payments/{{payment_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                "{{payment_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Payment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"payment_status\": \"completed\",\n    \"payment_notes\": \"Payment verified and processed\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/payments/{{payment_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                "{{payment_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Payment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/payments/{{payment_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "payments",
+                "{{payment_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer Support",
+      "item": [
+        {
+          "name": "Create Support Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"full_name\": \"John Doe\",\n    \"business_email\": \"john@company.com\",\n    \"contact_number\": \"9876543210\",\n    \"service_interest\": \"technical support\",\n    \"message\": \"I need help with booking issues\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/customer_support/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_support",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Support Tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_support/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_support",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Support Ticket by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_support/{{support_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_support",
+                "{{support_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Support Ticket",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"resolved\",\n    \"resolution_notes\": \"Issue has been resolved via phone support\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/customer_support/{{support_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_support",
+                "{{support_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Support Ticket",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customer_support/{{support_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customer_support",
+                "{{support_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Create Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"city\": \"Mumbai\",\n    \"state\": \"Maharashtra\",\n    \"country\": \"India\",\n    \"pincode\": \"400001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/locations/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "locations",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/locations/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "locations",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Location by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/locations/{{location_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "locations",
+                "{{location_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Location",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"city\": \"Mumbai\",\n    \"state\": \"Maharashtra\",\n    \"pincode\": \"400002\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/locations/{{location_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "locations",
+                "{{location_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Location",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/locations/{{location_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "locations",
+                "{{location_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "Create Feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\": 1,\n    \"booking_id\": \"{{booking_id}}\",\n    \"rating\": 5,\n    \"feedback_text\": \"Excellent service, very professional driver\",\n    \"feedback_type\": \"positive\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/feedback/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Feedback",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/feedback/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Feedback by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/feedback/{{feedback_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback",
+                "{{feedback_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Feedback",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"feedback_status\": \"acknowledged\",\n    \"admin_response\": \"Thank you for your feedback\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/feedback/{{feedback_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback",
+                "{{feedback_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Feedback",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/feedback/{{feedback_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback",
+                "{{feedback_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feedback Center",
+      "item": [
+        {
+          "name": "Create Feedback Center Entry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"feedback_type\": \"rider\",\n    \"user_id\": 1,\n    \"rating\": 4,\n    \"feedback_text\": \"Good service overall\",\n    \"created_by\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/feedback_center/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback_center",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Feedback Center Entries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/feedback_center/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback_center",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Feedback Center Entry by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/feedback_center/{{feedback_center_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback_center",
+                "{{feedback_center_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Feedback Center Entry",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"reviewed\",\n    \"admin_notes\": \"Feedback reviewed and forwarded to relevant department\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/feedback_center/{{feedback_center_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback_center",
+                "{{feedback_center_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Feedback Center Entry",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/feedback_center/{{feedback_center_id}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "feedback_center",
+                "{{feedback_center_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Endpoints",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                ""
+              ]
+            },
+            "description": "Basic health check to verify API is running"
+          }
+        },
+        {
+          "name": "API Documentation (Swagger)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/docs",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "docs"
+              ]
+            },
+            "description": "Access Swagger UI documentation"
+          }
+        },
+        {
+          "name": "API Documentation (ReDoc)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/redoc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "redoc"
+              ]
+            },
+            "description": "Access ReDoc documentation"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "booking_id",
+      "value": "",
+      "type": "string",
+      "description": "Booking UUID"
+    },
+    {
+      "key": "case_id",
+      "value": "CASE000001",
+      "type": "string",
+      "description": "Chatbot case ID"
+    },
+    {
+      "key": "user_id",
+      "value": "1",
+      "type": "string",
+      "description": "User ID"
+    },
+    {
+      "key": "rider_id",
+      "value": "1",
+      "type": "string",
+      "description": "Rider ID"
+    },
+    {
+      "key": "vehicle_id",
+      "value": "1",
+      "type": "string",
+      "description": "Vehicle ID"
+    },
+    {
+      "key": "partner_id",
+      "value": "1",
+      "type": "string",
+      "description": "Partner ID"
+    },
+    {
+      "key": "service_id",
+      "value": "1",
+      "type": "string",
+      "description": "Service ID"
+    },
+    {
+      "key": "dashboard_id",
+      "value": "1",
+      "type": "string",
+      "description": "Dashboard ID"
+    },
+    {
+      "key": "admin_dashboard_id",
+      "value": "1",
+      "type": "string",
+      "description": "Admin Dashboard ID"
+    },
+    {
+      "key": "customer_dashboard_id",
+      "value": "1",
+      "type": "string",
+      "description": "Customer Dashboard ID"
+    },
+    {
+      "key": "rider_dashboard_id",
+      "value": "1",
+      "type": "string",
+      "description": "Rider Dashboard ID"
+    },
+    {
+      "key": "payment_id",
+      "value": "1",
+      "type": "string",
+      "description": "Payment ID"
+    },
+    {
+      "key": "support_id",
+      "value": "1",
+      "type": "string",
+      "description": "Support Ticket ID"
+    },
+    {
+      "key": "location_id",
+      "value": "1",
+      "type": "string",
+      "description": "Location ID"
+    },
+    {
+      "key": "feedback_id",
+      "value": "1",
+      "type": "string",
+      "description": "Feedback ID"
+    },
+    {
+      "key": "feedback_center_id",
+      "value": "1",
+      "type": "string",
+      "description": "Feedback Center ID"
+    },
+    {
+      "key": "query_id",
+      "value": "1",
+      "type": "string",
+      "description": "Partner Query ID"
+    }
+  ]
+}
