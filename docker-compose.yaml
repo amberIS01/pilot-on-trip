@@ -1,9 +1,76 @@
 version: "3.8"
+
 services:
-  backend:
-    build: .
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
-    volumes:
-      - .:/app
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: pilotsontip-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-sahil}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-pilotsontip}
+      MYSQL_USER: ${MYSQL_USER:-pilotsontip}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-pilotsontip123}
     ports:
-      - "8000:8000"
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - pilotsontip-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  # FastAPI Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pilotsontip-backend
+    restart: unless-stopped
+    environment:
+      # Database configuration (using local MySQL)
+      DATABASE_URL: mysql+pymysql://root:sahil@mysql:3306/pilotsontip
+      
+      # Application settings
+      APP_ENV: ${APP_ENV:-development}
+      DEBUG: ${DEBUG:-true}
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-here}
+      
+      # JWT Configuration (ready for implementation)
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-your-jwt-secret-key}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      JWT_EXPIRATION_MINUTES: ${JWT_EXPIRATION_MINUTES:-30}
+      
+      # CORS settings
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:8080}
+      
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - pilotsontip-network
+    command: >
+      sh -c "
+        echo 'Waiting for database...' &&
+        sleep 10 &&
+        echo 'Creating database tables...' &&
+        python databases/create_tables.py &&
+        echo 'Starting FastAPI server...' &&
+        uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      "
+
+networks:
+  pilotsontip-network:
+    driver: bridge
+    name: pilotsontip-network
+
+volumes:
+  mysql_data:
+    name: pilotsontip-mysql-data

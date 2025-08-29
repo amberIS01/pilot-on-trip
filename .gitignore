@@ -67,3 +67,16 @@ Thumbs.db
 # Development files
 to-do.md
 *.todo
+
+# Environment variables
+.env
+.env.local
+
+# Docker volumes
+mysql_data/
+
+# Temporary files
+*.tmp
+*.bak
+create_documentation*.py
+update_*.py
