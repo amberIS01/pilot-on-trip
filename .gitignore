@@ -80,3 +80,8 @@ mysql_data/
 *.bak
 create_documentation*.py
 update_*.py
+
+# Project-specific files to ignore
+CLAUDE.md
+API_DOCUMENTATION.md
+test_assistant.py
