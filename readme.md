@@ -490,8 +490,4 @@ For technical support or questions:
 - [ ] GraphQL API option
 - [ ] Advanced analytics dashboard
 
----
 
-**Built with ❤️ by PilotsOntip Team**
-
-*Last Updated: December 2024*
